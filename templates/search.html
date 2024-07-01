@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!--{{query}}-->
+<!--{{products}}-->
+<center>
+    <h4>You have searched for <span class="text-success"> "{{query}}"</span></h4>
+</center>
+
+<div class="container-fluid mt-4" style="margin-bottom:100px;">
+    <div class="row">
+        {% for i in products %}
+        <div class="col-sm-4">
+            <div class="card" style="width: 26rem;">
+  <img src="{{i.image.url}}" class="card-img-top" alt="..." style="height:200px;width:100%;">
+  <div class="card-body">
+    <h3 class="card-title text-center">{{i.name}}</h3>
+      <h5 class="card-text text-center" style="text-align:justify">{{i.price}}</h5>
+    <a href="{% url 'shop:details' i.slug %}" style="position:relative;left:38%" class="btn btn-primary">DETAILS</a>
+  </div>
+</div>
+        </div>
+        {% empty %}
+        <h6 class="text-center text-dander">0 results found</h6>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
